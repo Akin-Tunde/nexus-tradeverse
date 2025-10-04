@@ -1,73 +1,89 @@
-# Welcome to your Lovable project
+# TradeX - Professional Trading Platform
 
-## Project info
+Welcome to TradeX, an advanced trading platform designed for professional traders. It features a comprehensive interface for trading perpetual futures, spot, and options, enhanced with AI-powered insights, social copy trading, and DeFi capital efficiency.
 
-**URL**: https://lovable.dev/projects/4ec5f780-40dd-4525-954f-a85989cfe43d
+![TradeX Interface](https://lovable.dev/opengraph-image-p98pqg.png)
 
-## How can I edit this code?
+## ✨ Features
 
-There are several ways of editing your application.
+TradeX is built with a rich set of features to provide a complete trading experience:
 
-**Use Lovable**
+*   **📈 Professional Trading UI**: A clean, responsive interface featuring a real-time trading chart, an intuitive order panel, a markets sidebar, and a detailed positions table.
+*   **🤖 AI Hub & Strategy Builder**: Leverage AI-driven market insights, sentiment analysis, and on-chain data to inform your trades. Build and deploy no-code automated trading strategies.
+*   **💼 Comprehensive Portfolio Management**: Track your asset balances, total portfolio value, available margin, and unrealized PnL. Manage which assets are used as collateral to maximize capital efficiency.
+*   **🏆 Leaderboard & Copy Trading**: View a real-time leaderboard of the top-performing traders on the platform. Automatically copy the trades of successful users to mirror their strategies.
+*   **🗳️ DAO Governance**: Participate in the protocol's future by creating and voting on governance proposals. Track your voting power and see active and past proposals.
+*   **🎁 Rewards & Loyalty Program**: Earn XP by completing daily trading quests. Climb loyalty tiers to unlock benefits like trading fee discounts and redeem XP in the rewards store.
+*   **💰 Earn Passive Yield**: Become a liquidity provider by depositing assets into liquidity pools (e.g., USDC, ETH, BTC) and earn a share of the platform's revenue.
+*   **📊 Platform Statistics**: View real-time platform metrics, including 24-hour trading volume, Total Value Locked (TVL), open interest, and the number of active traders.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4ec5f780-40dd-4525-954f-a85989cfe43d) and start prompting.
+## 🚀 Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+This project is built with a modern and robust technology stack:
 
-**Use your preferred IDE**
+*   **Vite**: A next-generation frontend tooling that provides a faster and leaner development experience.
+*   **React**: A JavaScript library for building user interfaces.
+*   **TypeScript**: A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
+*   **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
+*   **shadcn/ui**: A collection of re-usable UI components, built with Radix UI and Tailwind CSS.
+*   **React Router**: For declarative routing and navigation within the application.
+*   **TanStack Query**: For data fetching, caching, and state management.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 📂 Project Structure
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+The codebase is organized to be modular and scalable. Here is a brief overview of the key directories:
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+akin-tunde-nexus-tradeverse/
+├── public/              # Static assets
+└── src/
+    ├── components/      # Reusable components
+    │   ├── trading/     # Components specific to the trading interface
+    │   └── ui/          # Generic UI components from shadcn/ui
+    ├── hooks/           # Custom React hooks
+    ├── lib/             # Utility functions
+    └── pages/           # Top-level page components for each route
 ```
 
-**Edit a file directly in GitHub**
+## ⚙️ Getting Started
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+To get a local copy up and running, follow these simple steps.
 
-**Use GitHub Codespaces**
+### Prerequisites
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+You need to have Node.js and npm (or yarn/pnpm) installed on your machine.
 
-## What technologies are used for this project?
+*   [Install Node.js with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-This project is built with:
+### Installation
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1.  **Clone the repository:**
+    ```sh
+    git clone <YOUR_GIT_URL>
+    ```
 
-## How can I deploy this project?
+2.  **Navigate to the project directory:**
+    ```sh
+    cd akin-tunde-nexus-tradeverse
+    ```
 
-Simply open [Lovable](https://lovable.dev/projects/4ec5f780-40dd-4525-954f-a85989cfe43d) and click on Share -> Publish.
+3.  **Install the necessary dependencies:**
+    ```sh
+    npm install
+    ```
 
-## Can I connect a custom domain to my Lovable project?
+4.  **Start the development server:**
+    This command will start the Vite development server with auto-reloading and an instant preview.
+    ```sh
+    npm run dev
+    ```
+    Your application will be available at `http://localhost:8080`.
 
-Yes, you can!
+## 📜 Available Scripts
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+In the project directory, you can run:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+*   `npm run dev`: Starts the application in development mode.
+*   `npm run build`: Bundles the app for production to the `dist` folder.
+*   `npm run lint`: Runs the ESLint linter to find and fix problems in your code.
+*   `npm run preview`: Serves the production build locally to preview it before deployment.
