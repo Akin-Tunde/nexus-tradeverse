@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -32,7 +33,7 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-20">
       <Header tradeMode="futures" onTradeModeChange={() => {}} />
       
       <div className="container mx-auto p-6 space-y-6">
@@ -154,6 +155,8 @@ const Leaderboard = () => {
           </div>
         </Card>
       </div>
+
+      <Footer />
     </div>
   );
 };

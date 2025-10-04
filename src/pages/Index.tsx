@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Header, TradeMode } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { MarketsSidebar } from "@/components/trading/MarketsSidebar";
 import { TradingChart } from "@/components/trading/TradingChart";
 import { OrderPanel } from "@/components/trading/OrderPanel";
@@ -10,10 +11,10 @@ const Index = () => {
   const [selectedMarket, setSelectedMarket] = useState("BTCUSD");
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-20">
       <Header tradeMode={tradeMode} onTradeModeChange={setTradeMode} />
       
-      <div className="flex h-[calc(100vh-3.5rem)]">
+      <div className="flex h-[calc(100vh-3.5rem-5rem)]">
         <MarketsSidebar 
           selectedMarket={selectedMarket}
           onSelectMarket={setSelectedMarket}
@@ -30,6 +31,8 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
