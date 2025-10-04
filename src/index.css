@@ -8,89 +8,73 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Trading Platform - Professional Dark Theme */
+    --background: 216 28% 7%;
+    --foreground: 210 20% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 217 25% 10%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 217 28% 8%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Trading Actions */
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 20% 98%;
+    
+    --long: 142 76% 36%;
+    --long-foreground: 210 20% 98%;
+    --long-hover: 142 76% 42%;
+    
+    --short: 0 72% 51%;
+    --short-foreground: 210 20% 98%;
+    --short-hover: 0 72% 57%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217 25% 15%;
+    --secondary-foreground: 210 20% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 217 25% 12%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 210 20% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 217 20% 20%;
+    --input: 217 20% 18%;
+    --ring: 199 89% 48%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Premium/Gold accents */
+    --premium: 45 93% 47%;
+    --premium-foreground: 217 28% 7%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Chart colors */
+    --chart-green: 142 76% 36%;
+    --chart-red: 0 72% 51%;
+    --chart-grid: 217 20% 15%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Data visualization */
+    --positive: 142 76% 36%;
+    --negative: 0 72% 51%;
+    --neutral: 215 16% 47%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(199 89% 48%), hsl(199 89% 38%));
+    --gradient-long: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 26%));
+    --gradient-short: linear-gradient(135deg, hsl(0 72% 51%), hsl(0 72% 41%));
+    --gradient-premium: linear-gradient(135deg, hsl(45 93% 47%), hsl(35 93% 47%));
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    /* Shadows */
+    --shadow-elevation: 0 4px 20px -2px hsl(217 28% 4% / 0.5);
+    --shadow-glow-long: 0 0 20px hsl(142 76% 36% / 0.3);
+    --shadow-glow-short: 0 0 20px hsl(0 72% 51% / 0.3);
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Transitions */
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -101,5 +85,67 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "tnum" 1; /* Tabular numbers for trading data */
+  }
+
+  /* Custom scrollbar for trading interface */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent));
+  }
+}
+
+@layer utilities {
+  .text-long {
+    color: hsl(var(--long));
+  }
+
+  .text-short {
+    color: hsl(var(--short));
+  }
+
+  .bg-long {
+    background-color: hsl(var(--long));
+  }
+
+  .bg-short {
+    background-color: hsl(var(--short));
+  }
+
+  .border-long {
+    border-color: hsl(var(--long));
+  }
+
+  .border-short {
+    border-color: hsl(var(--short));
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-long {
+    background: var(--gradient-long);
+  }
+
+  .gradient-short {
+    background: var(--gradient-short);
+  }
+
+  .shadow-elevation {
+    box-shadow: var(--shadow-elevation);
   }
 }

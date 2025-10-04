@@ -47,16 +47,28 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+        long: {
+          DEFAULT: "hsl(var(--long))",
+          foreground: "hsl(var(--long-foreground))",
+          hover: "hsl(var(--long-hover))",
         },
+        short: {
+          DEFAULT: "hsl(var(--short))",
+          foreground: "hsl(var(--short-foreground))",
+          hover: "hsl(var(--short-hover))",
+        },
+        premium: {
+          DEFAULT: "hsl(var(--premium))",
+          foreground: "hsl(var(--premium-foreground))",
+        },
+        chart: {
+          green: "hsl(var(--chart-green))",
+          red: "hsl(var(--chart-red))",
+          grid: "hsl(var(--chart-grid))",
+        },
+        positive: "hsl(var(--positive))",
+        negative: "hsl(var(--negative))",
+        neutral: "hsl(var(--neutral))",
       },
       borderRadius: {
         lg: "var(--radius)",
