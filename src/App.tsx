@@ -11,6 +11,8 @@ import Governance from "./pages/Governance";
 import Rewards from "./pages/Rewards";
 import Stats from "./pages/Stats";
 import Earn from "./pages/Earn";
+import WalletInfo from "./pages/WalletInfo";
+import TransactionHistory from "./pages/TransactionHistory";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/rewards" element={<Rewards />} />
           <Route path="/stats" element={<Stats />} />
           <Route path="/earn" element={<Earn />} />
+          <Route path="/wallet-info" element={<WalletInfo />} />
+          <Route path="/transaction-history" element={<TransactionHistory />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

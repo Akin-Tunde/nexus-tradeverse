@@ -116,8 +116,12 @@ export const Header = ({ tradeMode, onTradeModeChange }: HeaderProps) => {
             <DropdownMenuItem asChild className="cursor-pointer">
               <Link to="/rewards">My Rewards & Loyalty</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">Wallet Info</DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">Transaction History</DropdownMenuItem>
+            <DropdownMenuItem asChild className="cursor-pointer">
+              <Link to="/wallet-info">Wallet Info</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild className="cursor-pointer">
+              <Link to="/transaction-history">Transaction History</Link>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer text-destructive">Logout</DropdownMenuItem>
           </DropdownMenuContent>
