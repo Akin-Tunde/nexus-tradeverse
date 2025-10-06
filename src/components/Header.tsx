@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
+import { ThemeToggle } from "@/components/ThemeToggle"; 
+
 export type TradeMode = "futures" | "spot" | "options";
 
 interface HeaderProps {
@@ -37,7 +39,7 @@ export const Header = ({ tradeMode, onTradeModeChange }: HeaderProps) => {
           </Link>
 
           {/* Navigation */}
-          <nav className="flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1"> {/* Hiding nav on small screens for better mobile layout */}
             {/* Trade Mode Selector */}
             <DropdownMenu open={isTradeOpen} onOpenChange={setIsTradeOpen}>
               <DropdownMenuTrigger asChild>
@@ -103,29 +105,35 @@ export const Header = ({ tradeMode, onTradeModeChange }: HeaderProps) => {
           </nav>
         </div>
 
-        {/* User Menu */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="gap-2">
-              <User className="h-4 w-4" />
-              <span className="font-mono text-sm">0x7a3...f2c</span>
-              <ChevronDown className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56 bg-popover border-border">
-            <DropdownMenuItem asChild className="cursor-pointer">
-              <Link to="/rewards">My Rewards & Loyalty</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild className="cursor-pointer">
-              <Link to="/wallet-info">Wallet Info</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild className="cursor-pointer">
-              <Link to="/transaction-history">Transaction History</Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer text-destructive">Logout</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {/* Right side of the header */}
+        <div className="flex items-center gap-4">
+          {/* User Menu */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="gap-2">
+                <User className="h-4 w-4" />
+                <span className="font-mono text-sm hidden sm:inline">0x7a3...f2c</span> {/* Hiding address on extra small screens */}
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 bg-popover border-border">
+              <DropdownMenuItem asChild className="cursor-pointer">
+                <Link to="/rewards">My Rewards & Loyalty</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild className="cursor-pointer">
+                <Link to="/wallet-info">Wallet Info</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild className="cursor-pointer">
+                <Link to="/transaction-history">Transaction History</Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="cursor-pointer text-destructive">Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Theme Toggle Button */}
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
