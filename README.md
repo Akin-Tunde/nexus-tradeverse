@@ -2,7 +2,6 @@
 
 Welcome to TradeX, an advanced trading platform designed for professional traders. It features a comprehensive interface for trading perpetual futures, spot, and options, enhanced with AI-powered insights, social copy trading, and DeFi capital efficiency.
 ## ✨ Features
-
 TradeX is built with a rich set of features to provide a complete trading experience:
 
 *   **📈 Professional Trading UI**: A clean, responsive interface featuring a real-time trading chart, an intuitive order panel, a markets sidebar, and a detailed positions table.
