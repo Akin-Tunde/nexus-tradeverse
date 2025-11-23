@@ -1,16 +1,25 @@
+// FILE: src/components/trading/TradingChart.tsx (Updated)
 import { TrendingUp, Clock } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { useTradingData } from "@/components/ui/use-toast"; // <-- NEW IMPORT
 
 interface TradingChartProps {
-  market: string;
+  // market: string; // REMOVED - Market is now in hook state
 }
 
-export const TradingChart = ({ market }: TradingChartProps) => {
+export const TradingChart = ({}: TradingChartProps) => { // REMOVED props
+  const { selectedMarket, currentPrice, leverage } = useTradingData(); // <-- USE HOOK
+
   // Simulated funding rate data
   const fundingRate = 0.0123;
   const nextFundingIn = "6h 23m";
-  const markPrice = 43250.50;
+  // const markPrice = 43250.50; // REMOVED - From mock
   const indexPrice = 43248.20;
+  
+  // Use logic from OrderPanel to calculate a consistent Liq Price proxy
+  const MAINTENANCE_RATE = 0.005; 
+  const estimatedLiqPrice = currentPrice * (1 - MAINTENANCE_RATE / leverage[0]);
+
 
   return (
     <Card className="flex-1 border-border bg-card p-0 overflow-hidden">
@@ -19,7 +28,7 @@ export const TradingChart = ({ market }: TradingChartProps) => {
         <div className="flex items-center gap-6">
           <div>
             <div className="text-xs text-muted-foreground">Mark Price</div>
-            <div className="text-sm font-mono font-semibold">${markPrice.toLocaleString()}</div>
+            <div className="text-sm font-mono font-semibold">${currentPrice.toLocaleString()}</div> {/* <-- USE MARKET DATA */}
           </div>
           <div>
             <div className="text-xs text-muted-foreground">Index Price</div>
@@ -55,7 +64,7 @@ export const TradingChart = ({ market }: TradingChartProps) => {
             <TrendingUp className="h-16 w-16 mx-auto text-primary" />
             <div className="text-sm text-muted-foreground">
               <div className="font-semibold mb-1">Professional Trading Chart</div>
-              <div>Real-time price action for {market}</div>
+              <div>Real-time price action for {selectedMarket}</div> {/* <-- USE MARKET DATA */}
             </div>
           </div>
         </div>
