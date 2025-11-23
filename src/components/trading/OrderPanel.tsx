@@ -1,4 +1,5 @@
-import { useState } from "react";
+// FILE: src/components/trading/OrderPanel.tsx (Updated)
+import { useState, useMemo } from "react"; // Import necessary hooks
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,29 +7,52 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Info } from "lucide-react";
-import { toast } from "sonner";
+import { useTradingData } from "@/components/ui/use-toast"; // <-- NEW IMPORT
 
 interface OrderPanelProps {
-  market: string;
+  // market: string; // REMOVED - Market is now in hook state
 }
 
-export const OrderPanel = ({ market }: OrderPanelProps) => {
+export const OrderPanel = ({}: OrderPanelProps) => { // REMOVED props
+  const { 
+    selectedMarket, 
+    currentPrice, 
+    currentLiqPrice, 
+    leverage, 
+    setLeverage, 
+    handlePlaceOrder 
+  } = useTradingData(); // <-- USE HOOK
+  
   const [orderType, setOrderType] = useState<"market" | "limit">("limit");
   const [side, setSide] = useState<"long" | "short">("long");
-  const [leverage, setLeverage] = useState([10]);
   const [collateral, setCollateral] = useState("");
   const [price, setPrice] = useState("");
   const [size, setSize] = useState("");
 
-  const availableMargin = 10000; // USDC
-  const currentPrice = 43250.50;
-  const estimatedLiqPrice = currentPrice * (1 - 0.9 / leverage[0]);
+  const availableMargin = 10000; // USDC - Keeping mock for display
+  // const currentPrice = 43250.50; // REMOVED - From hook
+  // const estimatedLiqPrice = currentPrice * (1 - 0.9 / leverage[0]); // REMOVED - From mock calc
+  // const currentLiqPrice = useTradingData().currentLiqPrice; // <-- Now from hook
 
-  const handlePlaceOrder = () => {
-    toast.success(`${side === "long" ? "Long" : "Short"} order placed for ${market}`, {
-      description: `Size: ${size} | Leverage: ${leverage[0]}x`,
-    });
+  const handlePlaceOrderClick = () => {
+    // Passing inputs to the hook's handler
+    handlePlaceOrder(side, size, collateral); 
   };
+
+  // Dynamically adjust liq price display based on side
+  const liqPriceDisplay = useMemo(() => {
+    const lev = leverage[0];
+    // Re-call the logic from the hook concept here or ensure the hook provides both sides' liq prices.
+    // For simplicity, we use the hook's provided `currentLiqPrice` and assume it's based on the panel's state.
+    // Since the hook only provides *one* liq price based on a hardcoded 'long' in its useMemo, we'll use it as a proxy.
+    // A better hook would provide a function that takes 'side' as an argument.
+    const liqPrice = side === "long" 
+        ? currentLiqPrice // This is actually Long Liq Price in the hook mock logic
+        : currentPrice * (1 + 0.005 / lev); // Recalculate Short Liq for display if hook is limited
+        
+    return side === "long" ? liqPrice : currentPrice * (1 + 0.005 / lev); // Re-calculate for demonstration clarity
+  }, [side, leverage, currentLiqPrice, currentPrice]);
+
 
   return (
     <Card className="w-80 border-border bg-card p-4 space-y-4">
@@ -66,7 +90,7 @@ export const OrderPanel = ({ market }: OrderPanelProps) => {
         </div>
         <Slider
           value={leverage}
-          onValueChange={setLeverage}
+          onValueChange={setLeverage} // <-- USE HOOK SETTER
           min={1}
           max={50}
           step={1}
@@ -96,7 +120,7 @@ export const OrderPanel = ({ market }: OrderPanelProps) => {
 
       {/* Size Input */}
       <div className="space-y-2">
-        <Label htmlFor="size" className="text-sm">Size ({market.replace("USD", "")})</Label>
+        <Label htmlFor="size" className="text-sm">Size ({selectedMarket.replace("USD", "")})</Label> {/* <-- USE MARKET FROM HOOK */}
         <Input
           id="size"
           type="number"
@@ -136,7 +160,7 @@ export const OrderPanel = ({ market }: OrderPanelProps) => {
             Liquidation Price
             <Info className="h-3 w-3" />
           </span>
-          <span className="font-mono text-destructive">${estimatedLiqPrice.toFixed(2)}</span>
+          <span className="font-mono text-destructive">${liqPriceDisplay.toFixed(2)}</span> {/* <-- USE NEW CALC/DISPLAY */}
         </div>
         <div className="flex items-center justify-between">
           <span className="text-muted-foreground">Trading Fee</span>
@@ -146,7 +170,7 @@ export const OrderPanel = ({ market }: OrderPanelProps) => {
 
       {/* Place Order Button */}
       <Button
-        onClick={handlePlaceOrder}
+        onClick={handlePlaceOrderClick} // <-- USE NEW HANDLER
         className={`w-full ${
           side === "long" 
             ? "bg-long hover:bg-long-hover" 
@@ -154,7 +178,7 @@ export const OrderPanel = ({ market }: OrderPanelProps) => {
         }`}
         size="lg"
       >
-        {side === "long" ? "Open Long" : "Open Short"} {market.replace("USD", "")}
+        {side === "long" ? "Open Long" : "Open Short"} {selectedMarket.replace("USD", "")}
       </Button>
 
       {/* Additional Actions */}
