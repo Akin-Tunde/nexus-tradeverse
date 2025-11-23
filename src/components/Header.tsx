@@ -1,3 +1,4 @@
+// FILE: src/components/Header.tsx (Updated)
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, User, TrendingUp } from "lucide-react";
@@ -11,15 +12,17 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { ThemeToggle } from "@/components/ThemeToggle"; 
+import { useTradingData } from "@/components/ui/use-toast"; // <-- NEW IMPORT
 
 export type TradeMode = "futures" | "spot" | "options";
 
 interface HeaderProps {
-  tradeMode: TradeMode;
-  onTradeModeChange: (mode: TradeMode) => void;
+  // tradeMode: TradeMode; // REMOVED - Now sourced from hook
+  // onTradeModeChange: (mode: TradeMode) => void; // REMOVED - Now sourced from hook
 }
 
-export const Header = ({ tradeMode, onTradeModeChange }: HeaderProps) => {
+export const Header = ({}: HeaderProps) => { // REMOVED props
+  const { tradeMode, setTradeMode } = useTradingData(); // <-- USE HOOK
   const [isTradeOpen, setIsTradeOpen] = useState(false);
 
   const tradeModeLabels = {
@@ -50,7 +53,7 @@ export const Header = ({ tradeMode, onTradeModeChange }: HeaderProps) => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-48 bg-popover border-border">
                 <DropdownMenuItem 
-                  onClick={() => onTradeModeChange("futures")}
+                  onClick={() => setTradeMode("futures")} // <-- USE SETTER
                   className="cursor-pointer"
                 >
                   <div className="flex flex-col gap-0.5">
@@ -59,7 +62,7 @@ export const Header = ({ tradeMode, onTradeModeChange }: HeaderProps) => {
                   </div>
                 </DropdownMenuItem>
                 <DropdownMenuItem 
-                  onClick={() => onTradeModeChange("spot")}
+                  onClick={() => setTradeMode("spot")} // <-- USE SETTER
                   className="cursor-pointer"
                 >
                   <div className="flex flex-col gap-0.5">
@@ -68,7 +71,7 @@ export const Header = ({ tradeMode, onTradeModeChange }: HeaderProps) => {
                   </div>
                 </DropdownMenuItem>
                 <DropdownMenuItem 
-                  onClick={() => onTradeModeChange("options")}
+                  onClick={() => setTradeMode("options")} // <-- USE SETTER
                   className="cursor-pointer"
                 >
                   <div className="flex flex-col gap-0.5">
