@@ -1,47 +1,30 @@
-import { useState } from "react";
+// FILE: src/components/trading/MarketsSidebar.tsx (Updated)
+import { useState, useMemo } from "react"; // Use React's hook API for compatibility if we refactor hook location
 import { Search, TrendingUp, TrendingDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
+import { useTradingData } from "@/components/ui/use-toast"; // <-- NEW IMPORT
 
-interface Market {
-  symbol: string;
-  name: string;
-  price: number;
-  change24h: number;
-  volume24h: string;
-}
-
-const markets: Market[] = [
-  { symbol: "BTCUSD", name: "Bitcoin", price: 43250.50, change24h: 2.34, volume24h: "12.5B" },
-  { symbol: "ETHUSD", name: "Ethereum", price: 2280.75, change24h: -1.23, volume24h: "8.2B" },
-  { symbol: "SOLUSD", name: "Solana", price: 98.45, change24h: 5.67, volume24h: "1.8B" },
-  { symbol: "BNBUSD", name: "BNB", price: 312.80, change24h: 0.89, volume24h: "980M" },
-  { symbol: "ADAUSD", name: "Cardano", price: 0.5234, change24h: -2.45, volume24h: "650M" },
-  { symbol: "XRPUSD", name: "Ripple", price: 0.6123, change24h: 1.78, volume24h: "1.2B" },
-  { symbol: "DOTUSD", name: "Polkadot", price: 7.89, change24h: 3.21, volume24h: "420M" },
-  { symbol: "DOGEUSD", name: "Dogecoin", price: 0.0823, change24h: -0.56, volume24h: "580M" },
-];
+// Removed Market interface and MOCK_MARKETS array as they are now in the hook
 
 interface MarketsSidebarProps {
-  selectedMarket: string;
-  onSelectMarket: (symbol: string) => void;
+  // selectedMarket: string; // REMOVED
+  // onSelectMarket: (symbol: string) => void; // REMOVED
 }
 
-export const MarketsSidebar = ({ selectedMarket, onSelectMarket }: MarketsSidebarProps) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState<"volume" | "change" | "price">("volume");
+export const MarketsSidebar = ({}: MarketsSidebarProps) => { // REMOVED props
+  const { 
+    markets, 
+    selectedMarket, 
+    setSelectedMarket, 
+    sortBy, 
+    setSortBy, 
+    searchTerm, 
+    setSearchTerm 
+  } = useTradingData(); // <-- USE HOOK
 
-  const filteredMarkets = markets
-    .filter(m => 
-      m.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      m.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) => {
-      if (sortBy === "volume") return parseFloat(b.volume24h) - parseFloat(a.volume24h);
-      if (sortBy === "change") return b.change24h - a.change24h;
-      return b.price - a.price;
-    });
+  // Removed local state (searchTerm, sortBy, filteredMarkets)
 
   return (
     <div className="w-64 border-r border-border bg-card flex flex-col h-full">
@@ -52,7 +35,7 @@ export const MarketsSidebar = ({ selectedMarket, onSelectMarket }: MarketsSideba
           <Input
             placeholder="Search markets..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)} // <-- USE SETTER
             className="pl-9 bg-background border-border"
           />
         </div>
@@ -63,7 +46,7 @@ export const MarketsSidebar = ({ selectedMarket, onSelectMarket }: MarketsSideba
         <Button
           variant={sortBy === "volume" ? "secondary" : "ghost"}
           size="sm"
-          onClick={() => setSortBy("volume")}
+          onClick={() => setSortBy("volume")} // <-- USE SETTER
           className="flex-1 text-xs"
         >
           Volume
@@ -71,7 +54,7 @@ export const MarketsSidebar = ({ selectedMarket, onSelectMarket }: MarketsSideba
         <Button
           variant={sortBy === "change" ? "secondary" : "ghost"}
           size="sm"
-          onClick={() => setSortBy("change")}
+          onClick={() => setSortBy("change")} // <-- USE SETTER
           className="flex-1 text-xs"
         >
           Change
@@ -79,7 +62,7 @@ export const MarketsSidebar = ({ selectedMarket, onSelectMarket }: MarketsSideba
         <Button
           variant={sortBy === "price" ? "secondary" : "ghost"}
           size="sm"
-          onClick={() => setSortBy("price")}
+          onClick={() => setSortBy("price")} // <-- USE SETTER
           className="flex-1 text-xs"
         >
           Price
@@ -89,10 +72,10 @@ export const MarketsSidebar = ({ selectedMarket, onSelectMarket }: MarketsSideba
       {/* Markets list */}
       <ScrollArea className="flex-1">
         <div className="p-2 space-y-1">
-          {filteredMarkets.map((market) => (
+          {markets.map((market) => ( // <-- USE DATA FROM HOOK
             <button
               key={market.symbol}
-              onClick={() => onSelectMarket(market.symbol)}
+              onClick={() => setSelectedMarket(market.symbol)} // <-- USE SETTER
               className={`w-full p-3 rounded-md text-left transition-colors ${
                 selectedMarket === market.symbol
                   ? "bg-secondary"
