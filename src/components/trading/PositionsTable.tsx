@@ -153,4 +153,5 @@ export const PositionsTable = () => {
       </Tabs>
     </Card>
   );
+  
 };
